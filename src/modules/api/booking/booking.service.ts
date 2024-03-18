@@ -7,8 +7,9 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { CreateBookingDto } from './dtos/create_booking.dto';
 import { Booking } from './entities/booking.entity';
 import { BookingTimeSlot } from './entities/booking_time_slots.entity';
-import { UpdateBookingDto } from './dtos/update_booking.dto';
 import { CancelBookingDto } from './dtos/cancel_booking.dto';
+import { CheckTimeSlotAvailability } from './dtos/check_time_slot_availability.dto';
+import { TimeSlotAvailabilityResponseDto } from './dtos/time_slot_availability_response.dto';
 
 @Injectable()
 export class BookingService {
@@ -16,6 +17,8 @@ export class BookingService {
 		private dataSource: DataSource,
 		@InjectRepository(Booking)
 		private readonly bookingRepo: Repository<Booking>,
+		@InjectRepository(BookingTimeSlot)
+		private readonly bookingTimeSlotRepo: Repository<BookingTimeSlot>,
 	) {}
 
 	// TODO: add pagination 'cuz it will kill the system 
@@ -23,6 +26,31 @@ export class BookingService {
   // PS: add indices too.
   getBookings(): Promise<Booking[]> {
 		return this.bookingRepo.find();
+	}
+
+	async checkIfAvailable(timeSlotAvailability: CheckTimeSlotAvailability): Promise<TimeSlotAvailabilityResponseDto[]> {
+		const { roomUuid, timeSlotUuids } = timeSlotAvailability;
+
+		// TODO: DRY...
+		const existingBookings = await this.bookingTimeSlotRepo
+				.createQueryBuilder('booking_time_slots')
+				.innerJoin('booking_time_slots.booking', 'booking')
+				.andWhere('booking.status = :status', { status: 'ACTIVE' })
+				.andWhere('booking.roomUuid = :roomUuid', { roomUuid })
+				.andWhere('booking_time_slots.roomTimeSlotUuid IN (:...uuids)', { uuids: timeSlotUuids })
+				.getMany();
+		console.log(existingBookings)
+
+		return existingBookings.map((el) => 
+			plainToClass(
+				TimeSlotAvailabilityResponseDto, 
+				{ 
+					available: false, 
+					roomUuid: el.roomUuid, 
+					timeSlotUuid: el.roomTimeSlotUuid,
+					bookingUuid: el.bookingUuid,
+				}
+			));
 	}
 
 	// TODO: consider data inconsistency and indices
@@ -35,10 +63,12 @@ export class BookingService {
 			const { userUuid, roomUuid, timeSlotUuids } = createBookingDto;
 
 			// 1. Retrieve the current booking time slot entities
+			// TODO: DRY...
 			const existingBookings = await manager.getRepository(BookingTimeSlot)
 				.createQueryBuilder('booking_time_slots')
 				.innerJoin('booking_time_slots.booking', 'booking')
-				.where('booking.status = :status', { status: 'ACTIVE' })
+				.andWhere('booking.status = :status', { status: 'ACTIVE' })
+				.andWhere('booking.roomUuid = :roomUuid', { roomUuid })
 				.andWhere('booking_time_slots.roomTimeSlotUuid IN (:...uuids)', { uuids: timeSlotUuids })
 				.getMany();
 

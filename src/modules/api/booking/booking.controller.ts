@@ -5,7 +5,8 @@ import { BookingService } from './booking.service';
 import { Booking } from './entities/booking.entity';
 import { CreateBookingDto } from './dtos/create_booking.dto';
 import { CancelBookingDto } from './dtos/cancel_booking.dto';
-import { UpdateBookingDto } from './dtos/update_booking.dto';
+import { CheckTimeSlotAvailability } from './dtos/check_time_slot_availability.dto';
+import { TimeSlotAvailabilityResponseDto } from './dtos/time_slot_availability_response.dto';
 
 
 /* TODO: 
@@ -26,6 +27,14 @@ export class BookingController {
   @ApiOperation({ description: 'Get all bookings' })
   getBookings(): Promise<Booking[]> {
     return this.bookingService.getBookings();
+  }
+
+  @Post('check_if_not_available')
+  @ApiOperation({ description: 'Check if room time slots are booked already' })
+  areTimeSlotsBooked(
+    @Body() timeSlotAvailability: CheckTimeSlotAvailability
+  ): Promise<TimeSlotAvailabilityResponseDto[]> {
+    return this.bookingService.checkIfAvailable(timeSlotAvailability);
   }
 
   @Post()
