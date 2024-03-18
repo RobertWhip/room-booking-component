@@ -29,7 +29,7 @@ export class RoomController {
   @ApiOperation({ description: 'Create a new room with time slots' })
   @ApiBody({ type: CreateRoomDto })
   @UsePipes(new ValidationPipe({ transform: true }))
-  registerUser(
+  createRoom(
     @Body() createUserDto: CreateRoomDto
 	): Promise<Room> {
     return this.roomService.createRoom(createUserDto);

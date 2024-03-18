@@ -9,5 +9,6 @@ export class CreateRoomTimeSlotDto {
   @IsNotEmpty()
   endDateTime: Date;
 
+  @IsNotEmpty()
   roomUuid: string; // The UUID of the room associated with this time slot
 }

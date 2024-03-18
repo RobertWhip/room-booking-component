@@ -13,7 +13,7 @@ export class RoomTimeSlot {
   @Exclude()
   room: Room; // Define the property to hold the Room entity
 
-  @Column({ name: 'room_uuid' }) // Map to the room_uuid column in the database
+  @Column({ name: 'room_uuid', nullable: false }) // Map to the room_uuid column in the database
   roomUuid: string;
 
   @Column({ type: 'timestamp', nullable: false, name: 'start_date_time' })
