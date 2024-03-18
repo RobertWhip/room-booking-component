@@ -65,7 +65,7 @@ export class BookingService {
 
       // 1. Retrieve the current booking time slot entities
       // TODO: DRY...
-      const existingBookings = await manager
+      const existingBookings: BookingTimeSlot[] = await manager
         .getRepository(BookingTimeSlot)
         .createQueryBuilder('booking_time_slots')
         .innerJoin('booking_time_slots.booking', 'booking')
