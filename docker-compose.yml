@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: room-booking-postgres
+    image: postgres:16.2
+    environment:
+      POSTGRES_USER: room_booking
+      POSTGRES_PASSWORD: room_booking
+      POSTGRES_DB: room_booking_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - room_booking_network
+    restart: unless-stopped
+
+networks:
+  room_booking_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
