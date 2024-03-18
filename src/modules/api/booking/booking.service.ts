@@ -39,7 +39,6 @@ export class BookingService {
 				.andWhere('booking.roomUuid = :roomUuid', { roomUuid })
 				.andWhere('booking_time_slots.roomTimeSlotUuid IN (:...uuids)', { uuids: timeSlotUuids })
 				.getMany();
-		console.log(existingBookings)
 
 		return existingBookings.map((el) => 
 			plainToClass(
