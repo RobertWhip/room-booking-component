@@ -1,10 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import { AmqpServices } from '../constants/amqp.constants';
 
 @Injectable()
-export class RabbitMQService {
+export class AmqpService {
   constructor(
-    @Inject('RABBITMQ_SERVICE') private readonly client: ClientProxy
+    @Inject(AmqpServices.NOTIFICATION_AMQP_SERVICE) private readonly client: ClientProxy
   ) {}
 
   async sendMessage(pattern: string, data: any): Promise<void> {

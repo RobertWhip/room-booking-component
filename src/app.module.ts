@@ -1,23 +1,28 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-import { RabbitMQModule } from './shared/amqp/rabbitmq/rabbitmq.module'; // TODO: import from @shared
+import { AmqpModule } from './amqp/amqp.module'; // TODO: import from @shared
 import { ApiModule } from './api/api.module';
-import { databaseConfig } from './configs/local_db.config'
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import databaseConfig from './configs/database.config';
+import amqpConfig from './configs/amqp.config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'room_booking',
-      password: 'room_booking',
-      database: 'room_booking_db',
-      autoLoadEntities: true,
-      synchronize: true, // TODO: turn off when gets deployed to prod, and use migrations
+    ConfigModule.forRoot({
+      load: [
+        databaseConfig,
+        amqpConfig,
+      ],
     }),
-    RabbitMQModule,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        ...configService.get('database'), // Retrieve database configuration
+      }),
+      inject: [ConfigService],
+    }),
+    AmqpModule,
     ApiModule
   ],
 })

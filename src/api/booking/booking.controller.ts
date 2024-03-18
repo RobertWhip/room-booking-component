@@ -7,7 +7,7 @@ import { CreateBookingDto } from './dtos/create_booking.dto';
 import { CancelBookingDto } from './dtos/cancel_booking.dto';
 import { CheckTimeSlotAvailability } from './dtos/check_time_slot_availability.dto';
 import { TimeSlotAvailabilityResponseDto } from './dtos/time_slot_availability_response.dto';
-import { RabbitMQService } from '../../shared/amqp/rabbitmq/rabbitmq.service';
+import { AmqpService } from '../../amqp/amqp.service';
 
 
 /* TODO: 
@@ -24,7 +24,7 @@ import { RabbitMQService } from '../../shared/amqp/rabbitmq/rabbitmq.service';
 export class BookingController {
   constructor(
     private readonly bookingService: BookingService,
-    private readonly rabbitMQService: RabbitMQService,
+    private readonly AmqpService: AmqpService,
   ) {}
 
   @Get()
@@ -52,7 +52,7 @@ export class BookingController {
 
     // Send email
     // TODO: create notification service
-    this.rabbitMQService.sendMessage('booking_created', booking);
+    this.AmqpService.sendMessage('booking_created', booking);
 
     return booking;
   }
