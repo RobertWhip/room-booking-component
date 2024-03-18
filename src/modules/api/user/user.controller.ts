@@ -1,6 +1,19 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, UsePipes,ValidationPipe } from '@nestjs/common';
+import { ApiOperation, ApiBody } from '@nestjs/swagger';
 import { UserService } from './user.service';
+import { CreateUserDto } from './dtos/create_user.dto';
+import { User } from './entities/user.entity';
+
+
+/* TODO: 
+	- add login - create auth.service
+	- add pagination
+	- add indices
+	- add sorting by timestamp
+	- add other CRUD operations
+	- write tests
+	- caching maybe
+*/
 
 @Controller('users')
 export class UserController {
@@ -8,19 +21,17 @@ export class UserController {
 
   @Get()
   @ApiOperation({ description: 'Get all users' })
-  getUsers(): string {
-    return this.userService.getHello();
-  }
-
-  @Get()
-  @ApiOperation({ description: 'Get user by ID' })
-  getUser(): string {
-    return this.userService.getHello();
+  getUsers(): Promise<User[]> {
+    return this.userService.getUsers();
   }
 
   @Post()
   @ApiOperation({ description: 'Register a new user' })
-  registerUser(): string {
-    return this.userService.getHello();
+  @ApiBody({ type: CreateUserDto })
+  @UsePipes(new ValidationPipe({ transform: true }))
+  registerUser(
+    @Body() createUserDto: CreateUserDto
+	): Promise<User> {
+    return this.userService.registerUser(createUserDto);
   }
 }

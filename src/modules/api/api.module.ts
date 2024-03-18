@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config'; 
 import { UserModule } from './user/user.module';
+
+// TODO: add configs
 
 @Module({
   imports: [UserModule],
@@ -8,4 +9,4 @@ import { UserModule } from './user/user.module';
   providers: [],
   exports: [UserModule],
 })
-export class APIModule {}
+export class ApiModule {}
