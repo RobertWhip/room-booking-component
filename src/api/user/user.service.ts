@@ -9,21 +9,21 @@ import { User } from './entities/user.entity';
 @Injectable()
 export class UserService {
   constructor(
-		@InjectRepository(User)
-		private readonly userRepo: Repository<User>,
-	) {}
+    @InjectRepository(User)
+    private readonly userRepo: Repository<User>,
+  ) {}
 
-	// TODO: add pagination 'cuz it will kill the system 
-	// if this code will ever be deployed on production.
-	// PS: add indices too.
+  // TODO: add pagination 'cuz it will kill the system
+  // if this code will ever be deployed on production.
+  // PS: add indices too.
   getUsers(): Promise<User[]> {
-	console.log(process.env)
-		return this.userRepo.find();
+    console.log(process.env);
+    return this.userRepo.find();
   }
 
-	// TODO: hash the password
-	registerUser(userDto: CreateUserDto): Promise<User> {
-		const user = plainToClass(User, userDto);
-		return this.userRepo.save(user);
-	}
-};
+  // TODO: hash the password
+  registerUser(userDto: CreateUserDto): Promise<User> {
+    const user = plainToClass(User, userDto);
+    return this.userRepo.save(user);
+  }
+}

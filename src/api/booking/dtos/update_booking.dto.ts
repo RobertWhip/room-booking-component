@@ -6,4 +6,4 @@ export class UpdateBookingDto {
   uuid: string;
 
   // TODO: add other generic fields
-};
+}

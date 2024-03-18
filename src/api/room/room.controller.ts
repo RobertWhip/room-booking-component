@@ -1,9 +1,15 @@
-import { Controller, Get, Post, Body, UsePipes,ValidationPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { ApiOperation, ApiBody } from '@nestjs/swagger';
 import { RoomService } from './room.service';
 import { CreateRoomDto } from './dtos/create_room.dto';
 import { Room } from './entities/room.entity';
-
 
 /* TODO: 
 	- add auth
@@ -29,9 +35,7 @@ export class RoomController {
   @ApiOperation({ description: 'Create a new room with time slots' })
   @ApiBody({ type: CreateRoomDto })
   @UsePipes(new ValidationPipe({ transform: true }))
-  createRoom(
-    @Body() createUserDto: CreateRoomDto
-	): Promise<Room> {
+  createRoom(@Body() createUserDto: CreateRoomDto): Promise<Room> {
     return this.roomService.createRoom(createUserDto);
   }
 }

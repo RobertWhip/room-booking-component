@@ -10,10 +10,7 @@ import { AmqpModule } from '../../amqp/amqp.module';
 // LGTM
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Booking, BookingTimeSlot]),
-    AmqpModule,
-  ],
+  imports: [TypeOrmModule.forFeature([Booking, BookingTimeSlot]), AmqpModule],
   controllers: [BookingController],
   providers: [BookingService],
 })

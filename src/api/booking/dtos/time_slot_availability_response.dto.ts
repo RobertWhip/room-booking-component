@@ -16,4 +16,4 @@ export class TimeSlotAvailabilityResponseDto {
   @IsUUID()
   @IsNotEmpty()
   bookingUuid: string;
-};
+}

@@ -13,4 +13,4 @@ export class CreateBookingDto {
   @IsNotEmpty()
   @IsUUID(undefined, { each: true })
   timeSlotUuids: string[];
-};
+}

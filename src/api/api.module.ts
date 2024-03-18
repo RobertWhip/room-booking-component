@@ -4,11 +4,7 @@ import { UserModule } from './user/user.module';
 import { RoomModule } from './room/room.module';
 import { BookingModule } from './booking/booking.module';
 
-const apiModules = [
-  UserModule, 
-  RoomModule,
-  BookingModule,
-];
+const apiModules = [UserModule, RoomModule, BookingModule];
 
 @Module({
   imports: apiModules,
