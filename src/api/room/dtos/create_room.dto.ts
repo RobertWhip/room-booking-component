@@ -1,5 +1,6 @@
 import { IsString, IsNotEmpty, IsArray, ValidateNested, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
+
 import { CreateRoomTimeSlotDto } from './create_room_time_slot.dto';
 
 export class CreateRoomDto {
@@ -15,4 +16,4 @@ export class CreateRoomDto {
   @ValidateNested({ each: true })
   @Type(() => CreateRoomTimeSlotDto)
   timeSlots: CreateRoomTimeSlotDto[];
-}
+};

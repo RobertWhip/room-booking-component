@@ -34,4 +34,4 @@ export class UserController {
 	): Promise<User> {
     return this.userService.registerUser(createUserDto);
   }
-}
+};

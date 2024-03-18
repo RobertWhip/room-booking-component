@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
 import { Injectable } from '@nestjs/common';
-import { Repository, DataSource, In } from 'typeorm';
+import { Repository, DataSource } from 'typeorm';
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 import { CreateBookingDto } from './dtos/create_booking.dto';
@@ -113,4 +113,4 @@ export class BookingService {
     // 4. Save the updated booking back to the database
     return this.bookingRepo.save(existingBooking);
 	}
-}
+};

@@ -1,4 +1,4 @@
-import { IsUUID, IsString, IsNotEmpty, IsArray, ValidateNested, IsOptional } from 'class-validator';
+import { IsUUID, IsString, IsNotEmpty, IsArray } from 'class-validator';
 
 export class CreateBookingDto {
   @IsString()
@@ -13,4 +13,4 @@ export class CreateBookingDto {
   @IsNotEmpty()
   @IsUUID(undefined, { each: true })
   timeSlotUuids: string[];
-}
+};

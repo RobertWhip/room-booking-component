@@ -7,4 +7,4 @@ export class CancelBookingDto extends UpdateBookingDto {
   @IsNotEmpty()
   @Equals('INACTIVE')
   status: string;
-}
+};

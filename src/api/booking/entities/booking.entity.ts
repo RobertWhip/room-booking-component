@@ -27,4 +27,4 @@ export class Booking {
 
   @Column({ type: 'enum', enum: ['ACTIVE', 'INACTIVE'], default: 'ACTIVE' }) // Define status column
   status: 'ACTIVE' | 'INACTIVE'; // Define the property to hold the status
-}
+};

@@ -1,4 +1,5 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToMany } from 'typeorm';
+
 import { User } from '../../user/entities/user.entity'; // Import the User entity
 import { RoomTimeSlot } from './room_time_slot.entity'; // Import the RoomTimeSlot entity
 

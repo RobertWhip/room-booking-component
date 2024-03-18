@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Inject, Body, UsePipes,ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, UsePipes,ValidationPipe } from '@nestjs/common';
 import { ApiOperation, ApiBody } from '@nestjs/swagger';
 
 import { BookingService } from './booking.service';

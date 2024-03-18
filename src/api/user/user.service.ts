@@ -26,4 +26,4 @@ export class UserService {
 		const user = plainToClass(User, userDto);
 		return this.userRepo.save(user);
 	}
-}
+};

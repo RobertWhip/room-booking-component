@@ -3,7 +3,6 @@ import { registerAs } from '@nestjs/config';
 
 import { AmqpServices, AmqpQueues } from '../constants/amqp.constants';
 
-
 const bookingQueue = {
     name: AmqpServices.NOTIFICATION_AMQP_SERVICE,
     transport: Transport.RMQ,

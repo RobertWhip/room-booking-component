@@ -9,4 +9,4 @@ export class CheckTimeSlotAvailability {
   @IsNotEmpty()
   @IsUUID(undefined, { each: true })
   timeSlotUuids: string[];
-}
+};

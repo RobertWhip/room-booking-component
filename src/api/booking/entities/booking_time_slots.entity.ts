@@ -22,4 +22,4 @@ export class BookingTimeSlot {
 
   @Column({ name: 'room_time_slot_uuid', nullable: false })
   roomTimeSlotUuid: string;
-}
+};
