@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Body, UsePipes,ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Post, Inject, Body, UsePipes,ValidationPipe } from '@nestjs/common';
 import { ApiOperation, ApiBody } from '@nestjs/swagger';
 
 import { BookingService } from './booking.service';
@@ -7,6 +7,7 @@ import { CreateBookingDto } from './dtos/create_booking.dto';
 import { CancelBookingDto } from './dtos/cancel_booking.dto';
 import { CheckTimeSlotAvailability } from './dtos/check_time_slot_availability.dto';
 import { TimeSlotAvailabilityResponseDto } from './dtos/time_slot_availability_response.dto';
+import { RabbitMQService } from '../../shared/amqp/rabbitmq/rabbitmq.service';
 
 
 /* TODO: 
@@ -21,7 +22,10 @@ import { TimeSlotAvailabilityResponseDto } from './dtos/time_slot_availability_r
 
 @Controller('bookings')
 export class BookingController {
-  constructor(private readonly bookingService: BookingService) {}
+  constructor(
+    private readonly bookingService: BookingService,
+    private readonly rabbitMQService: RabbitMQService,
+  ) {}
 
   @Get()
   @ApiOperation({ description: 'Get all bookings' })
@@ -41,10 +45,16 @@ export class BookingController {
   @ApiOperation({ description: 'Book room time slots' })
   @ApiBody({ type: CreateBookingDto })
   @UsePipes(new ValidationPipe({ transform: true }))
-  createBooking(
+  async createBooking(
     @Body() createBookingDto: CreateBookingDto
 	): Promise<Booking> {
-    return this.bookingService.createBooking(createBookingDto);
+    const booking: Booking = await this.bookingService.createBooking(createBookingDto);
+
+    // Send email
+    // TODO: create notification service
+    this.rabbitMQService.sendMessage('booking_created', booking);
+
+    return booking;
   }
 
   @Post('cancel')
