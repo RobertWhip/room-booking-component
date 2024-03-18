@@ -13,6 +13,7 @@ type MockType<T> = {
   [P in keyof T]?: jest.Mock<{}>;
 };
 
+// TODO: split the logic into booking.service
 describe('BookingController', () => {
   let controller: BookingController;
 
@@ -139,5 +140,7 @@ describe('BookingController', () => {
       await controller.getBookings();
       expect(bookingRepoMockFind).toHaveBeenCalled();
     });
+
+    // TODO: add module defining checks
   });
 });
