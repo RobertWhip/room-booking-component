@@ -5,19 +5,19 @@ export class User {
   @PrimaryColumn('uuid', { default: () => 'uuid_generate_v4()' })
   uuid: number;
 
-  @Column()
+  @Column({ nullable: true })
   name: string; 
 
-  @Column()
+  @Column({ nullable: true })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   login: string;
 
-  @Column()
+  @Column({ nullable: true })
   password: string;
 
-  @Column()
+  @Column({ nullable: true })
   salt: string;
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
