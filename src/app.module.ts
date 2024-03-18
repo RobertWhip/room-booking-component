@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { RabbitMQModule } from './modules/shared/amqp/rabbitmq/rabbitmq.module'; // TODO: import from @shared
-import { ApiModule } from './modules/api/api.module';
+import { RabbitMQModule } from './shared/amqp/rabbitmq/rabbitmq.module'; // TODO: import from @shared
+import { ApiModule } from './api/api.module';
+import { databaseConfig } from './configs/local_db.config'
 
 @Module({
   imports: [
