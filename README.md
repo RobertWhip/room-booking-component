@@ -20,13 +20,16 @@ $ npm install
 
 # start the app
 $ npm start
+
+# run seeds using bash (curl)
+$ npm run seed:bash
 ```
 
 Now you have a fully working infrastucture with loaded seed data to the database.
 
 ### 2. Interact with the API:
 **room-booking-componse** is running by default at ```http://localhost:3000```.
-See the [Postman documention](gooogle.com) to easily interact with the API.
+See the [Postman documention](https://www.postman.com/solar-shadow-465709/workspace/room-booking-component/request/15566154-69d8bdad-3422-4877-89ec-6d3ec1c70fd4) to easily interact with the API (don't forget to select environment space).
 
 Other services:
 
@@ -62,7 +65,8 @@ img
 11. Integration and end-to-end tests weren't part of the technical task, so I skipped them for this test app.
 12. The room timeslots logic were keeped to the simplest solution, so there can be more focus on the transaction and the data consistency itself.
 13. In the project, Swagger was initially integrated for API documentation purposes. However, after further consideration, a decision was made to switch to Postman documentation. Despite this change, the integration of Swagger remains intact, providing flexibility for potential future use or as an alternative documentation solution if needed.
-14. The app requires monitoring. This repository doesn't include it
+14. The app requires monitoring. This repository doesn't include it.
+15. The seed system was made as simple as possible, making it harder to implement new seeds, but it fits for demonstration purposes. Requires refactoring for production.
 
 
 ## Development
