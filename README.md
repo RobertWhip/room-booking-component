@@ -39,6 +39,8 @@ Now you have a fully working infrastucture with loaded seed data to the database
 **room-booking-componse** is running by default at ```http://localhost:3000```.
 See the [Postman documention](https://www.postman.com/solar-shadow-465709/workspace/room-booking-component/request/15566154-69d8bdad-3422-4877-89ec-6d3ec1c70fd4) to easily interact with the API (don't forget to select environment space).
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/15566154-8ab9e8d2-cebf-4047-afc3-d2d4fef5b81b?action=collection%2Ffork&collection-url=entityId%3D15566154-8ab9e8d2-cebf-4047-afc3-d2d4fef5b81b%26entityType%3Dcollection%26workspaceId%3D30fe5013-2743-4621-a94a-cf3080c3061c#?env%5Blocal-dev%5D=W3sia2V5IjoiYXBpVXJsIiwidmFsdWUiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCIsInNlc3Npb25JbmRleCI6MH1d)
+
 Other services:
 
 **rabbitmq web interface** is running by default at ```http://localhost:15672/```. The defeault username is ```guest``` and the password is ```guest``` too. Here you can find the messages that the **room-booking-component** publishes.
