@@ -22,8 +22,6 @@ import { AmqpService } from '../../amqp/amqp.service';
 	- add indices
 	- add sorting by timestamp
 	- add other CRUD operations
-	- write tests
-	- caching maybe
 */
 
 @Controller('bookings')

@@ -5,8 +5,6 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { User } from './entities/user.entity';
 
-// LGTM
-
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UserController],

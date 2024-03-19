@@ -17,7 +17,6 @@ import { Room } from './entities/room.entity';
 	- add indices
 	- add sorting by timestamp
 	- add other CRUD operations
-	- write tests
 	- caching maybe
 */
 
