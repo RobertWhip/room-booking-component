@@ -18,6 +18,9 @@ $ nvm use
 # install npm packages
 $ npm install
 
+# set up .env file
+$ cp example.env .env
+
 # start the app
 $ npm start
 
