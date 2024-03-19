@@ -2,6 +2,11 @@
 # room-booking-component
 
 room booking system – Nest.js slots booking API.
+### Versions and technologies:
+* Node.js version: 20.11.1
+* PostgreSQL version: 16.2
+* RabbitMQ version: 3.x.x
+* Docker-compose version: 2.25.0
 
 ## Start the app locally
 
@@ -40,8 +45,8 @@ Other services:
 **postgresql** runs at ```http://localhost:5432```.
 
 ## App details
+![room-booking-component-diagram](https://github.com/RobertWhip/room-booking-component/assets/22663206/6fe8d95b-0f83-4bfd-8535-30ce71bfabd8)
 
-img
 ### Components of the app:
 **AppModule**: this module serves as the primary entry point for the Nest.js application, orchestrating its initialization and configuration:
 1. **AmqpModule**: within this module resides the logic responsible for publishing messages to AMQP (Advanced Message Queuing Protocol) channels. It encapsulates functionalities related to communication via AMQP channels.
@@ -70,12 +75,6 @@ img
 
 
 ## Development
-### Versions:
-Node.js version: 20.11.1
-PostgreSQL version: 16.2
-RabbitMQ version: 3.x.x
-Docker-compose version: 2.25.0
-
 ### Running the app
 Start Nest.js server:
 ```bash
