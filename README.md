@@ -9,7 +9,17 @@ room booking system – Nest.js slots booking API.
 
 Use docker-compose (it's recommended to use [v2.25.0](https://github.com/docker/compose/releases/tag/v2.25.0)) to install and start all the necessary docker images:
 ```bash
-docker-compose up
+# start environemnt
+$ docker-compose up -d
+
+# select correct Node.js version
+$ nvm use
+
+# install npm packages
+$ npm install
+
+# start the app
+$ npm start
 ```
 
 Now you have a fully working infrastucture with loaded seed data to the database.
@@ -90,6 +100,14 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+```
+
+### Lint
+Run unit-tests and check code coverage:
+
+```bash
+# unit tests
+$ npm run lint
 ```
 
 ## License
