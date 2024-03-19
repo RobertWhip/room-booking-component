@@ -1,0 +1,1 @@
+Implement a logger that would write to files analyzable log.

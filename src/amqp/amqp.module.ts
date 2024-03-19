@@ -6,7 +6,10 @@ import { AmqpService } from './amqp.service';
 import amqpConfig from '../configs/amqp.config';
 
 @Module({
-  imports: [ConfigModule, ClientsModule.register(amqpConfig())],
+  imports: [
+    ConfigModule,
+    ClientsModule.register(amqpConfig()), // TODO: do not import amqpConfig explicitly
+  ],
   providers: [AmqpService],
   exports: [AmqpService],
 })

@@ -7,8 +7,6 @@ import { Booking } from './entities/booking.entity';
 import { BookingTimeSlot } from './entities/booking_time_slots.entity';
 import { AmqpModule } from '../../amqp/amqp.module';
 
-// LGTM
-
 @Module({
   imports: [TypeOrmModule.forFeature([Booking, BookingTimeSlot]), AmqpModule],
   controllers: [BookingController],

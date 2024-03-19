@@ -12,5 +12,6 @@ export class AmqpService {
 
   async sendMessage(pattern: string, data: any): Promise<void> {
     await this.client.emit(pattern, data);
+    // TODO: Log event
   }
 }
