@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "8ab9e8d2-cebf-4047-afc3-d2d4fef5b81b",
+		"name": "Room Booking API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15566154"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get users all users in the system",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/users",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"best user\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/users",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Room",
+			"item": [
+				{
+					"name": "Get rooms all rooms in the system",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/rooms",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create rooms",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Meeting Room A\",\n  \"userUuid\": \"2c814351-c614-4a44-836d-0c8889483efe\",\n  \"timeSlots\": [\n    {\n      \"startDateTime\": \"2024-03-20T15:00:00.000Z\",\n      \"endDateTime\": \"2024-03-20T16:00:00.000Z\",\n      \"roomUuid\": \"123e4567-e89b-12d3-a456-426614174000\"\n    },\n    {\n      \"startDateTime\": \"2024-03-20T11:00:00.000Z\",\n      \"endDateTime\": \"2024-03-20T12:00:00.000Z\",\n      \"roomUuid\": \"123e4567-e89b-12d3-a456-426614174000\"\n    }\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/rooms",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Get bookings (returns all the bookings made in the system)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/bookings",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create booking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomUuid\": \"97b42154-dc9b-49ee-9fa9-d284ce828036\",\n    \"userUuid\": \"798529ac-db61-4cb6-ba16-abab59100205\",\n    \"timeSlotUuids\": [\"97b42154-dc9b-49ee-9fa9-d284ce828036\"]\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/bookings",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel booking by booking UUID",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"846fa6a3-fa74-4b82-9277-3491dfe2301d\",\n    \"status\": \"INACTIVE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/bookings/cancel",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"bookings",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check if time slots are available - returns entity if not available (to be refactored)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomUuid\": \"ac5ac1ab-8263-450f-afc6-b5aea6d61f07\",\n    \"timeSlotUuids\": [\"34e8a87e-2017-41fb-8412-1ca7eb7984e8\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/bookings/check_if_not_available",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"bookings",
+								"check_if_not_available"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
