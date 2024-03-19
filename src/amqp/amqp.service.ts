@@ -6,7 +6,7 @@ import { AmqpServices } from '../constants/amqp.constants';
 @Injectable()
 export class AmqpService {
   constructor(
-    @Inject(AmqpServices.NOTIFICATION_AMQP_SERVICE)
+    @Inject(AmqpServices.NOTIFICATION_AMQP_SERVICE) // TODO: make it more SOLID
     private readonly client: ClientProxy,
   ) {}
 
