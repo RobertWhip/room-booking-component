@@ -61,6 +61,8 @@ img
 10. I haven't included database pooling or benchmarks in this version.
 11. Integration and end-to-end tests weren't part of the technical task, so I skipped them for this test app.
 12. The room timeslots logic were keeped to the simplest solution, so there can be more focus on the transaction and the data consistency itself.
+13. In the project, Swagger was initially integrated for API documentation purposes. However, after further consideration, a decision was made to switch to Postman documentation. Despite this change, the integration of Swagger remains intact, providing flexibility for potential future use or as an alternative documentation solution if needed.
+
 
 ## Development
 ### Versions:
