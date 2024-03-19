@@ -8,8 +8,8 @@ import {
   OneToMany,
 } from 'typeorm';
 
-import { User } from '../../user/entities/user.entity'; // Import the User entity
-import { RoomTimeSlot } from './room_time_slot.entity'; // Import the RoomTimeSlot entity
+import { User } from '../../user/entities/user.entity';
+import { RoomTimeSlot } from './room_time_slot.entity';
 
 @Entity('rooms')
 export class Room {
@@ -20,7 +20,7 @@ export class Room {
   name: string;
 
   @ManyToOne(() => User, { nullable: true }) // Establish a ManyToOne relation with User entity
-  createdByUser: User;
+  createdByUser?: User;
 
   @Column({ nullable: true })
   @Column({ name: 'user_uuid' }) // Map to the room_uuid column in the database
@@ -34,7 +34,7 @@ export class Room {
     default: () => 'CURRENT_TIMESTAMP',
     name: 'created_at',
   })
-  createdAt: Date;
+  createdAt?: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
@@ -42,5 +42,5 @@ export class Room {
     onUpdate: 'CURRENT_TIMESTAMP',
     name: 'updated_at',
   })
-  updatedAt: Date;
+  updatedAt?: Date;
 }

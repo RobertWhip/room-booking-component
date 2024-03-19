@@ -19,10 +19,10 @@ export class RoomTimeSlot {
   @ManyToOne(() => Room, (room) => room.timeSlots) // Establish a ManyToOne relation with Room entity
   @JoinColumn({ name: 'room_uuid' }) // Specify the join column
   @Exclude()
-  room: Room; // Define the property to hold the Room entity
+  room?: Room; // Define the property to hold the Room entity
 
   @Column({ name: 'room_uuid', nullable: false }) // Map to the room_uuid column in the database
-  roomUuid: string;
+  roomUuid?: string;
 
   @Column({ type: 'timestamp', nullable: false, name: 'start_date_time' })
   startDateTime: Date; // Start date and time of the time slot
@@ -35,7 +35,7 @@ export class RoomTimeSlot {
     default: () => 'CURRENT_TIMESTAMP',
     name: 'created_at',
   })
-  createdAt: Date;
+  createdAt?: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
@@ -43,5 +43,5 @@ export class RoomTimeSlot {
     onUpdate: 'CURRENT_TIMESTAMP',
     name: 'updated_at',
   })
-  updatedAt: Date;
+  updatedAt?: Date;
 }

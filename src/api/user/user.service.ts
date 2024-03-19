@@ -17,7 +17,6 @@ export class UserService {
   // if this code will ever be deployed on production.
   // PS: add indices too.
   getUsers(): Promise<User[]> {
-    console.log(process.env);
     return this.userRepo.find();
   }
 

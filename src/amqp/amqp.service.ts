@@ -11,8 +11,6 @@ export class AmqpService {
   ) {}
 
   async sendMessage(pattern: string, data: any): Promise<void> {
-    console.log(pattern, data);
-
     await this.client.emit(pattern, data);
   }
 }

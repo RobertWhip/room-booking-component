@@ -34,12 +34,13 @@ export class RoomService {
       const savedRoom = await manager.save(room);
 
       // 2. Map through the timeslots and create db data
-      const timeSlotsToSave = createRoomDto.timeSlots.map((timeSlotDto) => {
-        return {
-          ...plainToClass(RoomTimeSlot, timeSlotDto),
-          roomUuid: savedRoom.uuid,
-        };
-      });
+      const timeSlotsToSave: RoomTimeSlot[] = createRoomDto.timeSlots.map(
+        (timeSlotDto) =>
+          plainToClass(RoomTimeSlot, {
+            ...timeSlotDto,
+            roomUuid: savedRoom.uuid,
+          }),
+      );
 
       // 3. Batch insert the time slots
       const savedTimeSlots = await manager.save(RoomTimeSlot, timeSlotsToSave);

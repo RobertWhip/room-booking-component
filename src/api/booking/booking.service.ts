@@ -10,6 +10,7 @@ import { BookingTimeSlot } from './entities/booking_time_slots.entity';
 import { CancelBookingDto } from './dtos/cancel_booking.dto';
 import { CheckTimeSlotAvailability } from './dtos/check_time_slot_availability.dto';
 import { TimeSlotAvailabilityResponseDto } from './dtos/time_slot_availability_response.dto';
+import { BookingStatus } from './constants/status.constant';
 
 @Injectable()
 export class BookingService {
@@ -120,7 +121,7 @@ export class BookingService {
     }
 
     // 3. Update the properties of the existing booking with the values from the DTO
-    existingBooking.status = updateBookingDto.status as 'ACTIVE' | 'INACTIVE'; // TODO: fix this sh*t
+    existingBooking.status = BookingStatus.INACTIVE;
 
     // 4. Save the updated booking back to the database
     return this.bookingRepo.save(existingBooking);

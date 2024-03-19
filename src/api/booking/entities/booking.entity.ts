@@ -10,6 +10,7 @@ import {
 import { Exclude } from 'class-transformer';
 
 import { Room } from '../../room/entities/room.entity'; // Import the Room entity
+import { BookingStatus } from '../constants/status.constant';
 
 @Entity('bookings')
 export class Booking {
@@ -19,7 +20,7 @@ export class Booking {
   @ManyToOne(() => Room, (room) => room.timeSlots) // Establish a ManyToOne relation with Room entity
   @JoinColumn({ name: 'room_uuid' }) // Specify the join column
   @Exclude()
-  room: Room; // Define the property to hold the Room entity
+  room?: Room; // Define the property to hold the Room entity
 
   @Column({ name: 'room_uuid', nullable: false }) // Map to the room_uuid column in the database
   roomUuid: string;
@@ -32,7 +33,7 @@ export class Booking {
     default: () => 'CURRENT_TIMESTAMP',
     name: 'created_at',
   })
-  createdAt: Date;
+  createdAt?: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
@@ -40,8 +41,8 @@ export class Booking {
     onUpdate: 'CURRENT_TIMESTAMP',
     name: 'updated_at',
   })
-  updatedAt: Date;
+  updatedAt?: Date;
 
   @Column({ type: 'enum', enum: ['ACTIVE', 'INACTIVE'], default: 'ACTIVE' }) // Define status column
-  status: 'ACTIVE' | 'INACTIVE'; // Define the property to hold the status
+  status: BookingStatus;
 }
