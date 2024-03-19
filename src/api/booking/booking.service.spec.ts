@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { DataSource } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
 
 import { BookingService } from './booking.service';
 import { BookingTimeSlot } from './entities/booking_time_slots.entity';
@@ -24,6 +25,13 @@ describe('BookingController', () => {
         el.bookingUuid = 'mock_booking_uuid';
       });
     }),
+  };
+
+  // Mocking BookingTimeSlot
+  const cacheMock = {
+    get: jest.fn(),
+    set: jest.fn(),
+    del: jest.fn(),
   };
 
   // Mocking create transaction
@@ -81,6 +89,7 @@ describe('BookingController', () => {
           provide: getRepositoryToken(BookingTimeSlot),
           useValue: slotsRepoMock,
         },
+        { provide: CACHE_MANAGER, useValue: cacheMock },
       ],
     }).compile();
 
@@ -110,6 +119,9 @@ describe('BookingController', () => {
           bookingUuid: 'mock_booking_uuid',
         })) as BookingTimeSlot[],
       );
+
+      // Verify cache removing
+      expect(cacheMock.del).toHaveBeenCalledWith('bookings');
     });
 
     // TODO: rewrite mocking logic so we'll able to easily modify the mock functions
@@ -119,9 +131,14 @@ describe('BookingController', () => {
     });
 
     // TODO: test query properties when added
-    it('should get all bookings', async () => {
+    it('should get all bookings (with cache)', async () => {
       await service.getBookings();
       expect(bookingRepoMock.find).toHaveBeenCalled();
+
+      // Verify caching
+      expect(cacheMock.set).toHaveBeenCalledWith('bookings', []);
+      await service.getBookings();
+      expect(cacheMock.get).toHaveBeenCalledWith('bookings');
     });
   });
 });

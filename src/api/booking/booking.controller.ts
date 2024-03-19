@@ -39,6 +39,7 @@ export class BookingController {
     return this.bookingService.getBookings();
   }
 
+  // TODO: refactor this function to make to easily cacheable
   @Post('check_if_not_available')
   @ApiOperation({ description: 'Check if room time slots are booked already' })
   areTimeSlotsBooked(
