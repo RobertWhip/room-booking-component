@@ -100,7 +100,7 @@ $ npm run start:prod
 ```
 
 ### Test
-Run unit-tests and check code coverage:
+Run tests and check code coverage:
 
 ```bash
 # unit tests
@@ -114,7 +114,6 @@ $ npm run test:cov
 ```
 
 ### Lint
-Run unit-tests and check code coverage:
 
 ```bash
 # unit tests
