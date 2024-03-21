@@ -73,7 +73,7 @@ Other services:
 9. I didn't fully implement or use some modules like ./shared.
 10. I haven't included database pooling or benchmarks in this version.
 11. Integration and end-to-end tests weren't part of the technical task, so I skipped them for this test app.
-12. The room timeslots logic were keeped to the simplest solution, so there can be more focus on the transaction and the data consistency itself.
+12. The room timeslots logic were kept to the simplest solution, so there can be more focus on the transaction and the data consistency itself.
 13. In the project, Swagger was initially integrated for API documentation purposes. However, after further consideration, a decision was made to switch to Postman documentation. Despite this change, the integration of Swagger remains intact, providing flexibility for potential future use or as an alternative documentation solution if needed.
 14. The app requires monitoring. This repository doesn't include it.
 15. The seed system was made as simple as possible, making it harder to implement new seeds, but it fits for demonstration purposes. Requires refactoring for production.
