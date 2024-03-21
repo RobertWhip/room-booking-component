@@ -56,8 +56,11 @@ Other services:
 **AppModule**: this module serves as the primary entry point for the Nest.js application, orchestrating its initialization and configuration:
 1. **AmqpModule**: within this module resides the logic responsible for publishing messages to AMQP (Advanced Message Queuing Protocol) channels. It encapsulates functionalities related to communication via AMQP channels.
 2. **ApiModule**: aggregates sub-modules modules:
+
 	2.1. **UserModule**: this module provides a straightforward API for creating and retrieving user entities within the application (without *authorization* and *authentication*).
+
 	2.2. **RoomModule**: here lies an API for managing rooms along with their associated time slots. Users can create rooms and allocate time slots as per their requirements.
+
 	2.3. **BookingModule**: this module offers an API for reserving and unreserving time slots within rooms.
 3. **Configs**: configuration files essential for configuring various aspects of the application, including connections to AMQP, database settings, and caching configurations.
 
